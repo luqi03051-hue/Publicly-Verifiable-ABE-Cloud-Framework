@@ -7,21 +7,7 @@
 > The paper's pairing-based ABE construction is restructured as a **hybrid encryption system**:
 > AES-256-GCM encrypts the actual plaintext; the PV-SR-ABE scheme encrypts only the 32-byte DEK (session key).
 
----
 
-## Why Hybrid Encryption?
-
-ABE schemes based on bilinear pairings operate on group elements (GT), not arbitrary byte strings. In practice:
-
-```
-Paper (theoretical):   ABE.Enc(M,  mpk, (M_policy, ρ), t')  ← encrypts message directly
-This project:          AES-256-GCM.Enc(plaintext, DEK)       ← encrypts message (fast, any size)
-                       PV-SR-ABE.Enc(DEK, mpk, policy, t')   ← encrypts only the 32-byte session key
-```
-
-This is the standard pattern for all real-world ABE deployments. Breaking confidentiality of `M` still requires breaking the ABE ciphertext to recover `DEK` — the IND-sCPA security guarantee is fully preserved.
-
----
 
 ## What Makes This Scheme Special: Public Verifiability
 
