@@ -5,11 +5,7 @@ from typing import Any, Dict, Optional
 
 
 class FileObjectStore:
-    """
-    本地持久化对象存储（模拟 S3）：
-      root_dir/<object_id>/v<version>.json
-      root_dir/<object_id>/latest.json  (记录 latest_version)
-    """
+    
 
     def __init__(self, root_dir: str):
         self.root_dir = Path(root_dir)
@@ -42,3 +38,4 @@ class FileObjectStore:
         if not ver_path.exists():
             raise FileNotFoundError(f"record not found: {ver_path}")
         return json.loads(ver_path.read_text(encoding="utf-8"))
+
