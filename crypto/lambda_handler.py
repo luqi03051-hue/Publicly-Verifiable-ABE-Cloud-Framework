@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 
 s3 = boto3.client("s3")
 
-OUTPUT_BUCKET = os.environ.get("OUTPUT_BUCKET", "ade-abe-policy-output")
+OUTPUT_BUCKET = os.environ.get("OUTPUT_BUCKET", "demo-output")
 
 def handler(event, context):
     print("Lambda handler invoked")
@@ -38,4 +38,5 @@ def handler(event, context):
     )
 
     print(f"wrote result to s3://{OUTPUT_BUCKET}/{out_key}")
+
     return {"statusCode": 200, "body": json.dumps({"out_bucket": OUTPUT_BUCKET, "out_key": out_key})}
