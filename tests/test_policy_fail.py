@@ -79,5 +79,6 @@ def test_policy_fail(tmp_path: Path):
                            "--object_id", object_id,
                            "--store_dir", str(store)])
 
-    # 允许你的程序输出有差异：只要不是 PASS 就算通过
+   
+
     assert ("Verify FAILED" in msg) or ("result=FAIL" in msg) or ("Verify PASSED" not in msg)
